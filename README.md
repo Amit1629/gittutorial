@@ -8,5 +8,7 @@
 
 
 
-this is a starting program journey
+this is a start of git hub programming journey
+
+
 
