@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SecureLife Insurance</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;color:#1a1a2e;background:#fff}
+a{text-decoration:none;cursor:pointer}
+
+/* NAV */
+nav{background:#0C447C;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.nav-logo{color:#fff;font-size:18px;font-weight:600}
+.nav-logo span{color:#85B7EB}
+.nav-links{display:flex;gap:1.5rem}
+.nav-links a{color:#B5D4F4;font-size:14px}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:#378ADD;color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:500}
+.nav-cta:hover{background:#185FA5}
+
+/* HERO */
+.hero{background:#185FA5;padding:5rem 2rem;text-align:center}
+.hero-tag{display:inline-block;background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:600;padding:5px 14px;border-radius:20px;margin-bottom:1.25rem}
+.hero h1{color:#fff;font-size:36px;font-weight:700;line-height:1.3;margin-bottom:1rem;max-width:580px;margin-left:auto;margin-right:auto}
+.hero p{color:#B5D4F4;font-size:15px;line-height:1.7;max-width:500px;margin:0 auto 2rem}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-white{background:#fff;color:#185FA5;border:none;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer}
+.btn-white:hover{background:#E6F1FB}
+.btn-outline{background:transparent;color:#fff;border:2px solid #85B7EB;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:500}
+.btn-outline:hover{background:#0C447C}
+
+/* STATS */
+.stats{background:#0C447C;padding:1.5rem 2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.stat{text-align:center}
+.stat-num{color:#fff;font-size:26px;font-weight:700}
+.stat-lbl{color:#85B7EB;font-size:12px;margin-top:3px}
+
+/* SECTIONS */
+.section{padding:4rem 2rem;max-width:1100px;margin:0 auto}
+.section-full{padding:4rem 2rem;background:#F5F8FF}
+.section-full .section{padding:0;background:none}
+.section-tag{font-size:12px;font-weight:600;color:#185FA5;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px}
+.section-title{font-size:26px;font-weight:700;margin-bottom:8px;color:#0C447C}
+.section-sub{font-size:14px;color:#666;line-height:1.7;margin-bottom:2rem;max-width:500px}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem}
+.service-card{background:#fff;border:1px solid #E0EAF4;border-radius:12px;padding:1.5rem;transition:transform 0.2s,border-color 0.2s}
+.service-card:hover{transform:translateY(-3px);border-color:#378ADD}
+.service-icon{width:48px;height:48px;background:#E6F1FB;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.service-icon svg{width:24px;height:24px;stroke:#185FA5;fill:none;stroke-width:1.8}
+.service-name{font-size:16px;font-weight:600;margin-bottom:6px;color:#0C447C}
+.service-desc{font-size:13px;color:#666;line-height:1.6}
+
+/* PLANS */
+.plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem}
+.plan-card{background:#fff;border:1px solid #E0EAF4;border-radius:12px;padding:1.5rem}
+.plan-card.featured{border:2px solid #378ADD;position:relative}
+.popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#378ADD;color:#fff;font-size:11px;font-weight:600;padding:4px 14px;border-radius:20px;white-space:nowrap}
+.plan-name{font-size:18px;font-weight:700;margin-bottom:4px;color:#0C447C}
+.plan-price{font-size:28px;font-weight:700;color:#185FA5;margin-bottom:4px}
+.plan-price span{font-size:14px;color:#888;font-weight:400}
+.plan-desc{font-size:13px;color:#666;margin-bottom:1.25rem;line-height:1.5}
+.plan-features{list-style:none;margin-bottom:1.25rem}
+.plan-features li{font-size:13px;color:#444;padding:6px 0;border-bottom:1px solid #F0F0F0;display:flex;align-items:center;gap:8px}
+.plan-features li:last-child{border-bottom:none}
+.check-icon{width:18px;height:18px;background:#E6F1FB;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.check-icon svg{width:10px;height:10px;stroke:#185FA5;stroke-width:2.5;fill:none}
+.plan-btn{width:100%;padding:10px;border-radius:8px;font-size:14px;cursor:pointer;border:2px solid #185FA5;background:transparent;color:#185FA5;font-weight:600;transition:all 0.2s}
+.plan-card.featured .plan-btn{background:#185FA5;color:#fff}
+.plan-btn:hover{background:#185FA5;color:#fff}
+
+/* PROCESS */
+.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem}
+.process-step{text-align:center;padding:1rem}
+.step-circle{width:48px;height:48px;background:#185FA5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;margin:0 auto 14px}
+.step-title{font-size:15px;font-weight:600;margin-bottom:6px;color:#0C447C}
+.step-desc{font-size:13px;color:#666;line-height:1.6}
+
+/* TESTIMONIALS */
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.tcard{background:#fff;border:1px solid #E0EAF4;border-radius:12px;padding:1.5rem}
+.stars{color:#F5A623;font-size:16px;margin-bottom:10px}
+.tcard-text{font-size:14px;color:#555;line-height:1.7;margin-bottom:1.25rem;font-style:italic}
+.tcard-author{display:flex;align-items:center;gap:10px}
+.avatar{width:40px;height:40px;border-radius:50%;background:#E6F1FB;color:#0C447C;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.author-name{font-size:14px;font-weight:600;color:#0C447C}
+.author-loc{font-size:12px;color:#888}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.form-group{margin-bottom:14px}
+.form-label{font-size:13px;color:#555;font-weight:600;display:block;margin-bottom:5px}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid #D0DCEA;border-radius:8px;font-size:14px;background:#fff;color:#333;font-family:inherit;transition:border-color 0.2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#378ADD}
+textarea{height:100px;resize:none}
+.submit-btn{background:#185FA5;color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:600;width:100%;transition:background 0.2s}
+.submit-btn:hover{background:#0C447C}
+.contact-info{display:flex;flex-direction:column;gap:1.25rem;padding-top:0.5rem}
+.info-item{display:flex;align-items:flex-start;gap:12px}
+.info-icon{width:40px;height:40px;background:#E6F1FB;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.info-icon svg{width:20px;height:20px;stroke:#185FA5;fill:none;stroke-width:1.8}
+.info-title{font-size:14px;font-weight:600;color:#0C447C;margin-bottom:3px}
+.info-val{font-size:13px;color:#666}
+
+/* FOOTER */
+footer{background:#0C447C;padding:2rem;margin-top:0}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1.5rem;margin-bottom:1.5rem}
+.footer-logo{color:#fff;font-size:18px;font-weight:700}
+.footer-logo span{color:#85B7EB}
+.footer-tagline{color:#85B7EB;font-size:13px;margin-top:4px}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer-links a{color:#B5D4F4;font-size:13px}
+.footer-links a:hover{color:#fff}
+.footer-copy{border-top:1px solid #185FA5;padding-top:1rem;color:#85B7EB;font-size:12px}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .contact-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero h1{font-size:26px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-logo">Secure<span>Life</span> Insurance</div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#plans">Plans</a>
+    <a href="#process">How it works</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get a quote</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Trusted by 10,000+ families across India</div>
+  <h1>Protecting what matters most to you</h1>
+  <p>Comprehensive health, car, and life insurance plans designed for every stage of your life. Simple. Affordable. Reliable.</p>
+  <div class="hero-btns">
+    <button class="btn-white" onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">Explore plans</button>
+    <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">File a claim</button>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">10K+</div><div class="stat-lbl">Happy customers</div></div>
+  <div class="stat"><div class="stat-num">98%</div><div class="stat-lbl">Claim settlement</div></div>
+  <div class="stat"><div class="stat-num">24/7</div><div class="stat-lbl">Customer support</div></div>
+  <div class="stat"><div class="stat-num">15+</div><div class="stat-lbl">Years of trust</div></div>
+</div>
+
+<!-- SERVICES -->
+<div id="services" class="section-full">
+<div class="section">
+  <div class="section-tag">Our services</div>
+  <div class="section-title">Everything you need under one roof</div>
+  <div class="section-sub">From health to car to life — we cover it all with the best plans in India.</div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <div class="service-name">Health insurance</div>
+      <div class="service-desc">Cashless hospitalization at 5000+ network hospitals. Covers surgery, ICU, OPD and more.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+      </div>
+      <div class="service-name">Car insurance</div>
+      <div class="service-desc">Comprehensive and third-party coverage. Covers accident, theft, natural calamity and more.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L3 7v6c0 5.25 3.75 10.15 9 11.25C18.25 23.15 22 18.25 22 13V7z"/></svg>
+      </div>
+      <div class="service-name">Life insurance</div>
+      <div class="service-desc">Term, whole life and ULIP plans. Secure your family's financial future with the right coverage.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div class="service-name">Home insurance</div>
+      <div class="service-desc">Protect your home against fire, flood, theft, and natural disasters. Peace of mind guaranteed.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PLANS -->
+<div id="plans" class="section">
+  <div class="section-tag">Pricing plans</div>
+  <div class="section-title">Choose the right plan for you</div>
+  <div class="section-sub">Flexible health insurance plans starting at just ₹7,000 per year.</div>
+  <div class="plans-grid">
+    <div class="plan-card">
+      <div class="plan-name">Basic</div>
+      <div class="plan-price">₹7,000 <span>/ year</span></div>
+      <div class="plan-desc">Essential coverage for individuals on a budget.</div>
+      <ul class="plan-features">
+        <li><div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></div>Sum insured ₹2,00,000</li>
+        <li><div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></div>1000+ network hospitals</li>
+        <li><div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></div>Cashless claims</li>
+        <li><div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></div>24/7 helpline</li>
+      </ul>
+      <button class="plan-btn">Get started</button>
+    </div>
+    <div class="plan-card featured">
+      <div class="popular-badge">Most popular</div>
+      <div class="plan-name">Standard</div>
+      <div class="plan-price">₹10,000 <span>/ year</span></div>
+      <div class="plan-desc">Best value for families and working professionals.</div>
+      <ul class="plan-features">
+        <li><div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></div>Sum insured ₹3,00,000</li>
+        <li><div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></div>3000+ network hospitals</li>
+        <li><div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></div>OPD cover included</li>
+        <li><div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></div>Free annual health checkup</li>
+        <li><div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></div>Maternity cover</li>
+      </ul>
+      <button class="plan-btn">Get started</button>
+    </div>
+    <div class="plan-card">
+      <div class="plan-name">Premium</div>
+      <div class="plan-price">₹15,000 <span>/ year</span></div>
+      <div class="plan-desc">Maximum coverage for complete peace of mind.</div>
+      <ul class="plan-features">
+        <li><div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></div>Sum insured ₹5,00,000</li>
+        <li><div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></div>5000+ network hospitals</li>
+        <li><div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></div>International coverage</li>
+        <li><div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></div>Priority claim support</li>
+        <li><div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></div>No room rent limit</li>
+      </ul>
+      <button class="plan-btn">Get started</button>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div id="process" class="section-full">
+<div class="section">
+  <div class="section-tag">How it works</div>
+  <div class="section-title">Get covered in 4 simple steps</div>
+  <div class="section-sub">From choosing a plan to filing a claim — we make it effortless.</div>
+  <div class="process-grid">
+    <div class="process-step"><div class="step-circle">1</div><div class="step-title">Choose a plan</div><div class="step-desc">Browse our plans and pick what suits your needs and budget perfectly.</div></div>
+    <div class="process-step"><div class="step-circle">2</div><div class="step-title">Fill your details</div><div class="step-desc">Complete your profile and submit required documents quickly online.</div></div>
+    <div class="process-step"><div class="step-circle">3</div><div class="step-title">Make payment</div><div class="step-desc">Pay securely via UPI, net banking, debit/credit card, or easy EMI.</div></div>
+    <div class="process-step"><div class="step-circle">4</div><div class="step-title">Stay covered</div><div class="step-desc">Receive your policy instantly and enjoy full coverage immediately.</div></div>
+  </div>
+</div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div id="testimonials" class="section">
+  <div class="section-tag">Testimonials</div>
+  <div class="section-title">What our customers say</div>
+  <div class="section-sub">Real stories from real customers across India.</div>
+  <div class="testimonials-grid">
+    <div class="tcard">
+      <div class="stars">★★★★★</div>
+      <div class="tcard-text">"My claim was settled in just 3 days. The team was incredibly supportive during a very difficult time for my family."</div>
+      <div class="tcard-author"><div class="avatar">AK</div><div><div class="author-name">Amit Kumar</div><div class="author-loc">Mumbai</div></div></div>
+    </div>
+    <div class="tcard">
+      <div class="stars">★★★★★</div>
+      <div class="tcard-text">"The cashless facility at my hospital made the whole experience completely stress-free. Highly recommend SecureLife!"</div>
+      <div class="tcard-author"><div class="avatar">PS</div><div><div class="author-name">Priya Sharma</div><div class="author-loc">Delhi</div></div></div>
+    </div>
+    <div class="tcard">
+      <div class="stars">★★★★☆</div>
+      <div class="tcard-text">"Affordable premiums and excellent coverage. My entire family is now protected under one plan. Great service!"</div>
+      <div class="tcard-author"><div class="avatar">VP</div><div><div class="author-name">Vikram Patel</div><div class="author-loc">Bangalore</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="section-full">
+<div class="section">
+  <div class="section-tag">Contact us</div>
+  <div class="section-title">Get in touch with us</div>
+  <div class="section-sub">Have questions? Our expert team is ready to help you 24/7.</div>
+  <div class="contact-grid">
+    <div>
+      <div class="form-group"><label class="form-label">Full name</label><input type="text" placeholder="Amit Kumar"></div>
+      <div class="form-group"><label class="form-label">Email address</label><input type="email" placeholder="amit@email.com"></div>
+      <div class="form-group"><label class="form-label">Phone number</label><input type="tel" placeholder="+91 98765 43210"></div>
+      <div class="form-group"><label class="form-label">Insurance type</label>
+        <select>
+          <option>Health insurance</option>
+          <option>Car insurance</option>
+          <option>Life insurance</option>
+          <option>Home insurance</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Message</label><textarea placeholder="Tell us how we can help you..."></textarea></div>
+      <button class="submit-btn">Send message</button>
+    </div>
+    <div class="contact-info">
+      <div class="info-item">
+        <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.13 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.46-.46a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <div><div class="info-title">Phone</div><div class="info-val">1800-123-4567 (toll free)<br>Mon–Sat, 9am to 6pm IST</div></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div><div class="info-title">Email</div><div class="info-val">support@securelife.in<br>claims@securelife.in</div></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><div class="info-title">Head office</div><div class="info-val">SecureLife Tower, BKC,<br>Mumbai, Maharashtra 400051</div></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div><div class="info-title">Working hours</div><div class="info-val">Monday to Saturday<br>9:00 AM – 6:00 PM IST</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Secure<span>Life</span> Insurance</div>
+      <div class="footer-tagline">Protecting families since 2010</div>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy policy</a>
+      <a href="#">Terms of use</a>
+      <a href="#">Grievance redressal</a>
+      <a href="#">IRDAI guidelines</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+  <div class="footer-copy">
+    © 2026 SecureLife Insurance Pvt. Ltd. | IRDAI Registration No. 123 | CIN: U66010MH2010PTC123456 | All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>
